@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@/components/theme-provider";
+import { FloatingNav } from "@/components/ui/floating-navbar";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -18,6 +19,13 @@ export const metadata: Metadata = {
   description: "This is Ashikul Islam Nayeem's portfolio",
 };
 
+const navItems = [
+  { name: "Home", link: "/" },
+  { name: "Projects", link: "projects" },
+  { name: "Blogs", link: "blogs" },
+  { name: "Contact", link: "contact" },
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,7 +35,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <div className="bg-custom-black-100 min-h-screen">{children}</div>
+          <div className="bg-custom-black-100 min-h-screen">
+            <FloatingNav navItems={navItems} />
+            {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>
