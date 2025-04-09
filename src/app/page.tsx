@@ -1,4 +1,6 @@
+import FeaturedProject from "@/components/FeaturedProject";
 import Hero from "@/components/Hero";
+import Skills from "@/components/Skills";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 
 const navItems = [
@@ -14,12 +16,8 @@ export default function Home() {
       <div className="max-w-7xl w-full">
         <FloatingNav navItems={navItems} />
         <Hero />
-        {/* <Grid />
-        <RecentProjects />
-        <Clients />
-        <Experience />
-        <Approach />
-        <Footer /> */}
+        <Skills />
+        <FeaturedProject />
       </div>
     </main>
   );
