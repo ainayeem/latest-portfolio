@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { addContact } from "@/services/contact";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Facebook, Github, Linkedin, Loader2, Mail, MapPin } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -44,132 +45,169 @@ export default function ContactForm() {
   };
 
   return (
-    <div>
-      <Card className=" w-full text-white dark:bg-[#140C1C]  mt-10">
-        <CardContent className="p-5 flex flex-col gap-8">
-          {/* Title */}
-          <div>
-            <p className="text-sm text-[#110E18] dark:text-white">
-              Feel free to reach out if you have any questions or concerns. I am open to work opportunities that align with my skills and interests.
+    <div className="max-w-6xl mx-auto">
+      <Card className="w-full bg-gradient-to-br border border-gray-700 rounded-xl shadow-2xl overflow-hidden bg-custom-black-100">
+        <CardContent className="p-8 md:p-10">
+          {/* Header */}
+          <div className="mb-10 text-center">
+            {/* <h2 className="text-3xl font-bold bg-indigo-500 bg-clip-text text-transparent mb-2">Get In Touch</h2> */}
+            <p className="text-gray-300 max-w-lg mx-auto">
+              Feel free to reach out if you have any questions or opportunities. I&apos;ll get back to you as soon as possible.
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-20 items-center">
+          <div className="flex flex-col lg:flex-row gap-12">
             {/* Contact Form */}
-
-            <div className="space-y-4 lg:flex-1 w-full">
+            <div className="lg:flex-1 w-full">
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)}>
-                  <div className="space-y-4 ">
-                    {/* name  */}
-                    <div className="space-y-2">
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-base text-[#110E18] dark:text-white">
-                              Your Name
-                              <span className="text-red-500 ml-1">*</span>
-                            </FormLabel>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  {/* Name */}
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-300 font-medium">
+                          Your Name <span className="text-red-400">*</span>
+                        </FormLabel>
+                        <FormControl>
+                          <Input {...field} className="h-12  border-gray-700 text-white focus:ring-2 focus:ring-indigo-500" placeholder="John Doe" />
+                        </FormControl>
+                        <FormMessage className="text-red-400" />
+                      </FormItem>
+                    )}
+                  />
 
-                            <FormControl>
-                              <Input {...field} name="name" placeholder="Enter Your Name" className="h-10 w-full" />
-                            </FormControl>
+                  {/* Email */}
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-300 font-medium">
+                          Your Email <span className="text-red-400">*</span>
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="email"
+                            className="h-12  border-gray-700 text-white focus:ring-2 focus:ring-indigo-500"
+                            placeholder="john@example.com"
+                          />
+                        </FormControl>
+                        <FormMessage className="text-red-400" />
+                      </FormItem>
+                    )}
+                  />
 
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    {/* email*/}
-                    <div className="space-y-2">
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-base text-[#110E18] dark:text-white">
-                              Your Email
-                              <span className="text-red-500 ml-1">*</span>
-                            </FormLabel>
+                  {/* Phone */}
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-300 font-medium">Phone Number</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            className="h-12  border-gray-700 text-white focus:ring-2 focus:ring-indigo-500"
+                            placeholder="+880 1234 567890"
+                          />
+                        </FormControl>
+                        <FormMessage className="text-red-400" />
+                      </FormItem>
+                    )}
+                  />
 
-                            <FormControl>
-                              <Input {...field} name="phone" placeholder="Enter Your Email" className="h-10" />
-                            </FormControl>
+                  {/* Message */}
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-300 font-medium">
+                          Your Message <span className="text-red-400">*</span>
+                        </FormLabel>
+                        <FormControl>
+                          <Textarea
+                            {...field}
+                            rows={5}
+                            className=" border-gray-700 text-white focus:ring-2 focus:ring-indigo-500"
+                            placeholder="Hello, I'd like to talk about..."
+                          />
+                        </FormControl>
+                        <FormMessage className="text-red-400" />
+                      </FormItem>
+                    )}
+                  />
 
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    {/* phone */}
-                    <div className="space-y-2">
-                      <FormField
-                        control={form.control}
-                        name="phone"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-base text-[#110E18] dark:text-white">Your Phone Number</FormLabel>
-
-                            <FormControl>
-                              <Input {...field} name="phone" placeholder="Enter Your Number" className="h-10" />
-                            </FormControl>
-
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    {/* message */}
-                    <div className="space-y-2">
-                      <FormField
-                        control={form.control}
-                        name="message"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-base text-[#110E18] dark:text-white">
-                              Your Message
-                              <span className="text-red-500 ml-1">*</span>
-                            </FormLabel>
-
-                            <FormControl>
-                              <Textarea
-                                {...field}
-                                name="message"
-                                placeholder="Enter Your Message ..."
-                                className="h-36 text-[#110E18] dark:text-white"
-                              />
-                            </FormControl>
-
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-
-                    {/* submit button */}
-                    <Button type="submit" className="w-full bg-[#8750F7] hover:bg-[#733DD6] text-white cursor-pointer">
-                      {isSubmitting ? "Sending..." : "Send Message"}
-                      {/* <Image src={email} alt="Email Icon" width={24} height={24} /> */}
-                    </Button>
-                  </div>
+                  {/* Submit Button */}
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full h-12 bg-indigo-600 hover:bg-indigo-800 cursor-pointer text-white font-medium rounded-lg transition-all duration-300 shadow-lg"
+                  >
+                    {isSubmitting ? (
+                      <div className="flex items-center gap-2">
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Sending...
+                      </div>
+                    ) : (
+                      "Send Message"
+                    )}
+                  </Button>
                 </form>
               </Form>
             </div>
 
-            {/* social icons */}
-            <div className="space-y-4 lg:flex-1 w-full">
-              <p className="text-[#8750F7] text-2xl font-bold">Moshfiqur Rahman</p>
-              <p className="text-[#989BA4] text-base">moshfiqurrahman37@gmail.com</p>
-              <p className="text-[#989BA4] text-base">Gulshan-02, Dhaka</p>
-              <div>
-                <div className="flex items-center gap-5">
-                  <Link href="#">{/* <Image src={github} width={40} height={40} alt="GitHub Icon" /> */}</Link>
-                  <Link href="https://www.facebook.com/emambokhari99">
-                    {/* <Image src={facebook} width={40} height={40} alt="Facebook Icon" /> */}
-                  </Link>
-                  <Link href="#">{/* <Image src={linkedin} width={40} height={40} alt="Linkedin Icon" /> */}</Link>
+            {/* Contact Info */}
+            <div className="lg:flex-1 w-full flex flex-col justify-center">
+              <div className="p-8 rounded-xl border border-gray-700">
+                <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-indigo-500 mb-6">Contact Information</h3>
+
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <Mail className="h-6 w-6 text-indigo-400 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="text-indigo-400 text-sm">Email</p>
+                      <p className="text-white font-medium">ain.nayeem1999@gmail.com</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <MapPin className="h-6 w-6 text-indigo-400 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="text-indigo-400 text-sm">Location</p>
+                      <p className="text-white font-medium">Dhanmondi, Dhaka, Bangladesh</p>
+                    </div>
+                  </div>
+
+                  <div className="pt-4">
+                    <p className="text-indigo-400 text-sm mb-4">Connect with me</p>
+                    <div className="flex gap-4">
+                      <Link
+                        href="https://github.com/ainayeem"
+                        className="p-3 bg-indigo-700 hover:bg-indigo-600 rounded-full transition-colors"
+                        target="_blank"
+                      >
+                        <Github className="h-5 w-5 text-white" />
+                      </Link>
+                      <Link
+                        href="https://www.linkedin.com/in/ainayeem/"
+                        className="p-3 bg-indigo-700 hover:bg-indigo-600 rounded-full transition-colors"
+                        target="_blank"
+                      >
+                        <Linkedin className="h-5 w-5 text-white" />
+                      </Link>
+                      <Link
+                        href="https://www.facebook.com/profile.php?id=61560522810852"
+                        className="p-3 bg-indigo-700 hover:bg-indigo-600 rounded-full transition-colors"
+                        target="_blank"
+                      >
+                        <Facebook className="h-5 w-5 text-white" />
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -3,7 +3,12 @@
 
 export const getAllBlogs = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blogs`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blogs`, {
+      next: {
+        tags: ["blogs"], // Add cache tag
+        revalidate: 50, // Revalidate every 10 seconds);
+      },
+    });
     const data = await res.json();
     return data;
   } catch (error: any) {
@@ -13,7 +18,12 @@ export const getAllBlogs = async () => {
 
 export const getBlogById = async (id: string) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blogs/${id}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blogs/${id}`, {
+      next: {
+        tags: ["blogs"], // Add cache tag
+        revalidate: 50, // Revalidate every 10 seconds);
+      },
+    });
     const data = await res.json();
     return data;
   } catch (error: any) {

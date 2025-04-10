@@ -3,7 +3,12 @@
 
 export const getAllProjects = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/projects`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/projects`, {
+      next: {
+        tags: ["projects"], // Add cache tag
+        revalidate: 50, // Revalidate every 10 seconds
+      },
+    });
     const data = await res.json();
     return data;
   } catch (error: any) {
@@ -13,7 +18,12 @@ export const getAllProjects = async () => {
 
 export const getFeaturedProject = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/projects/featured-project`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/projects/featured-project`, {
+      next: {
+        tags: ["projects"], // Add cache tag
+        revalidate: 50, // Revalidate every 10 seconds );
+      },
+    });
     const data = await res.json();
     return data;
   } catch (error: any) {
@@ -23,7 +33,12 @@ export const getFeaturedProject = async () => {
 
 export const getProjectById = async (id: string) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/projects/${id}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/projects/${id}`, {
+      next: {
+        tags: ["projects"], // Add cache tag
+        revalidate: 50, // Revalidate every 10 seconds
+      },
+    });
     const data = await res.json();
     return data;
   } catch (error: any) {

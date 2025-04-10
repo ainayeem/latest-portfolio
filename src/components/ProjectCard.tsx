@@ -20,7 +20,7 @@ const ProjectCard = ({ project }: FeaturedProjectCardProps) => {
         <CardBody className="relative border border-indigo-800/30 bg-gradient-to-b from-gray-950 to-indigo-950/10 rounded-xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col h-auto">
           {/* Project Image */}
           <CardItem className="w-full mb-4">
-            <CardItem translateZ="100" className="relative w-full h-40 overflow-hidden rounded-lg">
+            <CardItem translateZ="50" className="relative w-full h-40 overflow-hidden rounded-lg">
               <Image
                 src={project?.thumbnail || "/placeholder.svg"}
                 fill

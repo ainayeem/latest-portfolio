@@ -20,6 +20,10 @@ const Skills = async () => {
     return acc;
   }, {} as GroupedSkills);
 
+  if (!groupedSkills) {
+    return <div className="text-center text-white">No skills found</div>;
+  }
+
   return (
     <div className=" mt-10">
       {/* Section Title */}

@@ -12,4 +12,5 @@ export type TProject = {
   apiDocumentation?: string;
   isFeatured?: boolean;
   isDeleted?: boolean;
+  createdAt: string;
 };

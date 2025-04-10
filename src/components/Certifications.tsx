@@ -11,7 +11,7 @@ const certificationsData = {
       year: "2020 - 2024",
       description:
         "A comprehensive program covering various aspects of computer science, including programming, algorithms, and software development.",
-      achievements: ["3.76 GPA"],
+      achievements: ["3.76 CGPA"],
       courses: ["System Design", "Algorithms", "Web Development", "Microprocessor Design"],
     },
   ],
